@@ -1,0 +1,21 @@
+<h1>Cascadetest servers</h1>
+
+<table>
+  <tr>
+    <th>Server</th>
+    <th>Name</th>
+    <th>Status</th>    
+    <th>Database</th>
+    <th>Actions</th>
+  </tr>
+<% @servers.each do |server| %>
+  <tr>
+    <td><a href="<%=request.protocol %><%=request.host %>:<%= server.values['httpport'] %>"><%=request.protocol %><%=request.host %>:<%= server.values["httpport"] %></a></td>
+    <td><%= server.values["name"] %></td>
+    <td><%= status(server.values["location"]) %></td>
+    <td><%= server.values["db_name"] %></td>
+    <td><a href="/servers/start/<%= server.values['name'] %>">Start</a> | <a href="/servers/stop/<%= server.values['name'] %>">Stop</a></td>
+  </tr>
+<% end %>
+</table>
+
